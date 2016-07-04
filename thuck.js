@@ -1,13 +1,13 @@
 var debug = require('debug')('thuck')
 
-var Transform = require('stream').Transform
-  , inherits = require('util').inherits
-  , assert = require('assert')
+var Transform = require('stream').Transform,
+  inherits = require('util').inherits,
+  assert = require('assert')
 
 module.exports = Thuck
 inherits(Thuck, Transform)
 
-function Thuck (flag, options) {
+function Thuck(flag, options) {
   if (!(this instanceof Thuck)) {
     return new Thuck(flag, options)
   }
@@ -25,7 +25,7 @@ function Thuck (flag, options) {
   debug('initialized with flag %s', flag)
 }
 
-Thuck.prototype._transform = function (chunk, encoding, done) {
+Thuck.prototype._transform = function(chunk, encoding, done) {
   if (this._collecting) {
     var remains = this._totalLength - this._collectedLength
 
@@ -60,7 +60,7 @@ Thuck.prototype._transform = function (chunk, encoding, done) {
   }
 }
 
-Thuck.prototype.reset = function () {
+Thuck.prototype.reset = function() {
   this._collecting = false
   this._collected = []
   this._collectedLength = 0

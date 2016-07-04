@@ -14,18 +14,18 @@ var passedLength = 0;
 var lastSize = 0;
 var startTime = Date.now();
 
-readStream.on('data', function (chunk) {
+readStream.on('data', function(chunk) {
     passedLength += chunk.length;
     if (writeStream.write(chunk) === false) {
         readStream.pause();
     }
 });
 
-readStream.on('end', function () {
+readStream.on('end', function() {
     writeStream.end();
 });
 
-writeStream.on('drain', function () {
+writeStream.on('drain', function() {
     readStream.resume();
 });
 

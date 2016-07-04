@@ -8,7 +8,7 @@ function Counter(opt) {
     this._index = 1;
 }
 
-Counter.prototype._read = function () {
+Counter.prototype._read = function() {
     var i = this._index++;
     if (i > this._max) {
         this.push(null);

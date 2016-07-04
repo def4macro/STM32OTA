@@ -1,11 +1,11 @@
 function Class1(opt) {
-    this.showTxt = function () {
+    this.showTxt = function() {
         if (opt === undefined) {
             console.log("showTxt: %s without argument.", this.name);
         } else {
             console.log("showTxt: %s with %s", this.name, opt);
         }
-        
+
     }
 }
 
