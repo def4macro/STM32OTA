@@ -1,6 +1,7 @@
 var stream = require('stream');
 var util = require('util');
 var fs = require('fs');
+var Knight = require('./Knight');
 
 function Love() {
     stream.Readable.call(this);
@@ -13,11 +14,13 @@ Love.prototype._read = function() {
     var i = this._index++;
     if (i > this._max) {
         this.push('beautiful');
+        this.push('\n');
         this.push(null);
     } else {
         var str = '' + i;
         var buf = new Buffer(str, 'utf8');
         this.push(buf);
+        this.push('\n');
     }
 };
 
@@ -32,21 +35,21 @@ Story.prototype._write = function(chunk, encoding, callback) {
     callback();
 };
 
-function Knight() {
-    stream.Transform.call(this);
-}
-util.inherits(Knight, stream.Transform);
+// function Knight() {
+//     stream.Transform.call(this);
+// }
+// util.inherits(Knight, stream.Transform);
 
-Knight.prototype._transform = function(chunk, encoding, callback) {
-    this.push(chunk);
-    callback();
-};
+// Knight.prototype._transform = function(chunk, encoding, callback) {
+//     this.push(chunk);
+//     callback();
+// };
 
-Knight.prototype._flush = function(callback) {
-    this.push('dark knight');
-    this.push('\n');
-    callback();
-};
+// Knight.prototype._flush = function(callback) {
+//     this.push('dark knight');
+//     this.push('\n');
+//     callback();
+// };
 
 var reader = new Love();
 var writer = new Story();
